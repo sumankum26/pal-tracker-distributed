@@ -17,9 +17,11 @@ namespace Backlog
         {
             _client.DefaultRequestHeaders.Accept.Clear();
             var streamTask = _client.GetStreamAsync($"project?projectId={projectId}");
-
             var serializer = new DataContractJsonSerializer(typeof(ProjectInfo));
             return serializer.ReadObject(await streamTask) as ProjectInfo;
+            //var client = new HttpClient();
+           // var task = client.GetStreamAsync("http://localhost:8883/project?projectId=1");
+           // return serializer.ReadObject(await task) as ProjectInfo;
         }
     }
 }
